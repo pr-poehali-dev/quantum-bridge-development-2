@@ -35,7 +35,7 @@ export default function Hero({ onWaitlist }: HeroProps) {
           ПОМОГУ
         </h1>
         <p className="text-lg md:text-xl max-w-2xl mx-auto px-6 opacity-90">
-          Попроси о помощи людей вокруг — ты сам выбираешь радиус. 500 метров или 50 км, в своём городе или в любой точке мира.
+          Стало плохо, нужен совет или просто некому помочь? Отправь запрос — и люди в твоём радиусе увидят его прямо сейчас.
         </p>
         <button onClick={onWaitlist} className="mt-8 bg-white text-neutral-900 px-8 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-neutral-200 transition-colors duration-300 cursor-pointer">
           Скачать приложение

@@ -2,9 +2,18 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef, useState } from "react";
 
 const moments = [
-  "Бабушка тащит тяжёлые сумки по лестнице...",
-  "Машина застряла в сугробе, водитель смотрит в растерянности...",
-  "Человек упал на льду, прохожие торопятся мимо...",
+  {
+    text: "Стало плохо на улице — не могу дойти до дома...",
+    sub: "Рядом люди, но как попросить незнакомца о помощи?",
+  },
+  {
+    text: "Запутался в жизненной ситуации, нужен чей-то совет...",
+    sub: "Не к кому обратиться прямо сейчас.",
+  },
+  {
+    text: "Застряла машина, темнеет, один на дороге...",
+    sub: "Хочется помочь, но куда-то спешишь...",
+  },
 ];
 
 export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
@@ -46,7 +55,7 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-neutral-200">
-          {moments.map((text, i) => (
+          {moments.map((moment, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -56,12 +65,8 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
               className="bg-white p-8 lg:p-10"
             >
               <p className="text-4xl mb-6 text-neutral-300 font-bold leading-none">0{i + 1}</p>
-              <p className="text-neutral-700 text-lg leading-relaxed">{text}</p>
-              <p className="mt-4 text-neutral-400 text-sm italic">
-                {i === 0 && "Неловко предлагать незнакомой женщине помощь..."}
-                {i === 1 && "Хочется помочь, но куда-то спешишь..."}
-                {i === 2 && "Остановился бы, но вдруг обидится?"}
-              </p>
+              <p className="text-neutral-700 text-lg leading-relaxed">{moment.text}</p>
+              <p className="mt-4 text-neutral-400 text-sm italic">{moment.sub}</p>
             </motion.div>
           ))}
         </div>
