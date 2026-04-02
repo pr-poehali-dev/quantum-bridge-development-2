@@ -45,6 +45,19 @@ export default function Admin() {
     return d.toLocaleString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
   };
 
+  const exportCSV = () => {
+    const bom = "\uFEFF";
+    const header = "№;Email;Дата регистрации\n";
+    const rows = items.map((item, i) => `${i + 1};${item.email};${formatDate(item.created_at)}`).join("\n");
+    const blob = new Blob([bom + header + rows], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `pomogu-waitlist-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   if (!auth) {
     return (
       <div className="min-h-screen bg-neutral-950 flex items-center justify-center px-6">
@@ -109,7 +122,18 @@ export default function Admin() {
         <div className="bg-neutral-900">
           <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
             <p className="text-sm font-semibold uppercase tracking-wide">Email-заявки</p>
-            <p className="text-neutral-500 text-xs">{total} записей</p>
+            <div className="flex items-center gap-4">
+              <p className="text-neutral-500 text-xs">{total} записей</p>
+              {items.length > 0 && (
+                <button
+                  onClick={exportCSV}
+                  className="flex items-center gap-2 text-xs text-white uppercase tracking-widest hover:text-neutral-400 transition-colors cursor-pointer"
+                >
+                  <Icon name="Download" size={14} />
+                  Скачать Excel
+                </button>
+              )}
+            </div>
           </div>
           {loading ? (
             <div className="flex items-center justify-center py-20 text-neutral-500">
