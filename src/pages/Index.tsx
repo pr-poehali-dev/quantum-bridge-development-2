@@ -6,6 +6,7 @@ import Promo from "@/components/Promo";
 import Pain from "@/components/Pain";
 import Feed from "@/components/Feed";
 import HowItWorks from "@/components/HowItWorks";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import WaitlistModal from "@/components/WaitlistModal";
 
@@ -21,6 +22,7 @@ const Index = () => {
       <Feed />
       <Promo />
       <HowItWorks />
+      <Testimonials />
       <Footer onWaitlist={() => setModalOpen(true)} />
       <WaitlistModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </main>

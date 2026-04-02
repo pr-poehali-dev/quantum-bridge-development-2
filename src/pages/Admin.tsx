@@ -7,12 +7,30 @@ interface WaitlistItem {
   created_at: string;
 }
 
+const ADMIN_PASSWORD = "Atm2013!";
+
 export default function Admin() {
+  const [auth, setAuth] = useState(false);
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+
   const [items, setItems] = useState<WaitlistItem[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input === ADMIN_PASSWORD) {
+      setAuth(true);
+      setError(false);
+    } else {
+      setError(true);
+      setInput("");
+    }
+  };
+
   useEffect(() => {
+    if (!auth) return;
     fetch("https://functions.poehali.dev/2d6e5979-4b1e-41d4-95be-e18cad31630f")
       .then((r) => r.json())
       .then((data) => {
@@ -20,12 +38,40 @@ export default function Admin() {
         setTotal(data.total || 0);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [auth]);
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
     return d.toLocaleString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
   };
+
+  if (!auth) {
+    return (
+      <div className="min-h-screen bg-neutral-950 flex items-center justify-center px-6">
+        <div className="w-full max-w-sm">
+          <p className="text-neutral-500 text-xs uppercase tracking-widest mb-2 text-center">Дашборд</p>
+          <h1 className="text-3xl font-bold text-white text-center mb-10 tracking-tight">ПОМОГУ</h1>
+          <form onSubmit={handleLogin} className="flex flex-col gap-3">
+            <input
+              type="password"
+              placeholder="Введите пароль"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              autoFocus
+              className="bg-neutral-900 text-white px-4 py-3 text-sm outline-none focus:bg-neutral-800 transition-colors placeholder:text-neutral-600"
+            />
+            {error && <p className="text-red-400 text-xs">Неверный пароль</p>}
+            <button
+              type="submit"
+              className="bg-white text-neutral-900 px-6 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-neutral-200 transition-colors"
+            >
+              Войти
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white px-6 py-12">
