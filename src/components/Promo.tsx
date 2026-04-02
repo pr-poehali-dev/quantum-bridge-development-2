@@ -31,8 +31,7 @@ export default function Promo() {
       </h3>
 
       <p className="absolute bottom-12 right-6 text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-3xl z-10 leading-tight">
-        Одна просьба — и её видят все, кто в твоём радиусе.
-        Ты решаешь, насколько далеко разлетится твой запрос о помощи.
+        Совет, поддержка, присутствие или действие — неважно что. Важно, что ты можешь попросить. А кто-то рядом — ответит.
       </p>
     </div>
   );
