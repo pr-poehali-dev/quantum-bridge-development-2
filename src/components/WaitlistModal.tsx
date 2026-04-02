@@ -16,7 +16,7 @@ export default function WaitlistModal({ open, onClose }: WaitlistModalProps) {
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch("https://functions.poehali.dev/e14a773f-92ac-4edb-9ca9-58365e7b063d", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
