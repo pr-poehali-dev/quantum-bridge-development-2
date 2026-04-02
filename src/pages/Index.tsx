@@ -21,7 +21,7 @@ const Index = () => {
       <Feed />
       <Promo />
       <HowItWorks />
-      <Footer />
+      <Footer onWaitlist={() => setModalOpen(true)} />
       <WaitlistModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </main>
   );

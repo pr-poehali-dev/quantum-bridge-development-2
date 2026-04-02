@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
+import StoreButtons from "@/components/StoreButtons";
 
 interface HeroProps {
   onWaitlist: () => void;
@@ -37,9 +38,10 @@ export default function Hero({ onWaitlist }: HeroProps) {
         <p className="text-lg md:text-xl max-w-2xl mx-auto px-6 opacity-90">
           Стало плохо, нужен совет или просто некому помочь? Отправь запрос — и люди в твоём радиусе увидят его прямо сейчас.
         </p>
-        <button onClick={onWaitlist} className="mt-8 bg-white text-neutral-900 px-8 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-neutral-200 transition-colors duration-300 cursor-pointer">
-          Скачать приложение
-        </button>
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-white/50 text-xs uppercase tracking-widest">Скоро в магазинах</p>
+          <StoreButtons onWaitlist={onWaitlist} dark />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,8 @@
-export default function Footer() {
+interface FooterProps {
+  onWaitlist?: () => void;
+}
+
+export default function Footer({ onWaitlist }: FooterProps) {
   return (
     <div
       className="relative h-[400px] sm:h-[600px] lg:h-[800px] max-h-[800px]"
@@ -16,18 +20,15 @@ export default function Footer() {
                 >
                   Как работает
                 </a>
-                <a
-                  href="#"
-                  className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
-                >
-                  App Store
-                </a>
-                <a
-                  href="#"
-                  className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Google Play
-                </a>
+                {["App Store", "Google Play", "AppGallery", "RuStore"].map((s) => (
+                  <button
+                    key={s}
+                    onClick={onWaitlist}
+                    className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base text-left cursor-pointer"
+                  >
+                    {s}
+                  </button>
+                ))}
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-neutral-400 text-xs sm:text-sm">Помощь</h3>

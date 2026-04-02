@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/icon";
+import StoreButtons from "@/components/StoreButtons";
 
 const features = [
   {
@@ -55,9 +56,7 @@ export default function Featured({ onWaitlist }: FeaturedProps) {
             </div>
           ))}
         </div>
-        <button onClick={onWaitlist} className="bg-black text-white border border-black px-6 py-3 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit uppercase tracking-widest">
-          Скачать приложение
-        </button>
+        <StoreButtons onWaitlist={onWaitlist} />
       </div>
     </div>
   );
