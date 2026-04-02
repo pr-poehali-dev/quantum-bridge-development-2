@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Некорректный email",
+      "method": "POST",
+      "path": "/",
+      "body": {"email": "notanemail"},
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Сохранение email",
+      "method": "POST",
+      "path": "/",
+      "body": {"email": "test_waitlist@pomogu.app"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Повторный email",
+      "method": "POST",
+      "path": "/",
+      "body": {"email": "test_waitlist@pomogu.app"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true, "already": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
