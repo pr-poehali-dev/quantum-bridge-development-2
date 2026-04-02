@@ -23,7 +23,11 @@ const features = [
   },
 ];
 
-export default function Featured() {
+interface FeaturedProps {
+  onWaitlist: () => void;
+}
+
+export default function Featured({ onWaitlist }: FeaturedProps) {
   return (
     <div id="about" className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0 bg-white">
       <div className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2">
@@ -51,7 +55,7 @@ export default function Featured() {
             </div>
           ))}
         </div>
-        <button className="bg-black text-white border border-black px-6 py-3 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit uppercase tracking-widest">
+        <button onClick={onWaitlist} className="bg-black text-white border border-black px-6 py-3 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit uppercase tracking-widest">
           Скачать приложение
         </button>
       </div>
