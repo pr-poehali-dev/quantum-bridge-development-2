@@ -15,7 +15,7 @@ const Index = () => {
     <main className="min-h-screen">
       <Header />
       <Hero onWaitlist={() => setModalOpen(true)} />
-      <Pain />
+      <Pain onWaitlist={() => setModalOpen(true)} />
       <Featured onWaitlist={() => setModalOpen(true)} />
       <Promo />
       <HowItWorks />

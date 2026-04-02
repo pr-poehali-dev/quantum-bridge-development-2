@@ -1,5 +1,5 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const moments = [
   "Бабушка тащит тяжёлые сумки по лестнице...",
@@ -7,7 +7,26 @@ const moments = [
   "Человек упал на льду, прохожие торопятся мимо...",
 ];
 
-export default function Pain() {
+export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("https://functions.poehali.dev/e14a773f-92ac-4edb-9ca9-58365e7b063d", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) { setStatus("success"); setEmail(""); }
+      else setStatus("error");
+    } catch {
+      setStatus("error");
+    }
+  };
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -52,12 +71,54 @@ export default function Pain() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-16 border-l-2 border-neutral-900 pl-8"
+          className="mt-16 border-l-2 border-neutral-900 pl-8 mb-16"
         >
           <p className="text-2xl lg:text-3xl text-neutral-900 leading-relaxed max-w-2xl">
             «Помогу» снимает неловкость. Человек сам просит о помощи — а ты просто откликаешься.
             Никакой неловкости. Только люди, которые хотят помочь.
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="bg-neutral-950 p-8 lg:p-12"
+        >
+          {status === "success" ? (
+            <div className="text-center py-4">
+              <p className="text-white text-2xl font-bold mb-2">Вы в списке!</p>
+              <p className="text-neutral-400">Напишем, как только приложение выйдет.</p>
+            </div>
+          ) : (
+            <>
+              <p className="text-neutral-400 uppercase text-xs tracking-widest mb-3">Скоро в App Store</p>
+              <p className="text-white text-2xl lg:text-3xl font-bold leading-tight mb-8 max-w-lg">
+                Хочу быть первым, кто поможет — и первым, кому помогут.
+              </p>
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
+                <input
+                  type="email"
+                  required
+                  placeholder="ваш@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 bg-neutral-800 text-white px-4 py-3 text-sm outline-none focus:bg-neutral-700 transition-colors placeholder:text-neutral-500"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="bg-white text-neutral-900 px-6 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-neutral-200 transition-colors disabled:opacity-50 shrink-0"
+                >
+                  {status === "loading" ? "..." : "Уведомить меня"}
+                </button>
+              </form>
+              {status === "error" && (
+                <p className="text-red-400 text-xs mt-2">Что-то пошло не так. Попробуйте ещё раз.</p>
+              )}
+            </>
+          )}
         </motion.div>
       </div>
     </div>
