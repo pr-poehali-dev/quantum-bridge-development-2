@@ -2,24 +2,24 @@ import Icon from "@/components/ui/icon";
 
 const features = [
   {
-    icon: "ShoppingBag",
-    title: "Тяжёлые сумки",
-    desc: "Попроси соседа помочь донести покупки до двери — один запрос, пять минут.",
+    icon: "MapPin",
+    title: "Твой радиус",
+    desc: "Выбери зону от 100 метров до сотен километров — только нужные люди увидят просьбу.",
   },
   {
     icon: "Snowflake",
     title: "Снег и лёд",
-    desc: "Откопать машину или расчистить дорожку — кто-то рядом всегда готов помочь.",
+    desc: "Откопать машину или расчистить дорожку — кто-то поблизости всегда готов помочь.",
+  },
+  {
+    icon: "ShoppingBag",
+    title: "Донести сумки",
+    desc: "Попроси помочь донести покупки до двери — один запрос, пять минут.",
   },
   {
     icon: "Car",
     title: "Толкнуть машину",
-    desc: "Застряли в луже или сугробе? Несколько соседей уже видят ваш запрос.",
-  },
-  {
-    icon: "Heart",
-    title: "Любая мелочь",
-    desc: "Передать ключи, выгулять питомца, помочь с ребёнком — просите смело.",
+    desc: "Застряли в луже или сугробе? Люди в радиусе уже видят ваш запрос.",
   },
 ];
 
@@ -38,9 +38,9 @@ export default function Featured({ onWaitlist }: FeaturedProps) {
         />
       </div>
       <div className="flex-1 text-left lg:h-[800px] flex flex-col justify-center lg:mr-12 lg:order-1">
-        <h3 className="uppercase mb-4 text-sm tracking-wide text-neutral-500">Соседская помощь рядом</h3>
+        <h3 className="uppercase mb-4 text-sm tracking-wide text-neutral-500">Помощь в любой точке мира</h3>
         <p className="text-2xl lg:text-4xl mb-10 text-neutral-900 leading-tight">
-          Один запрос — и помощь уже в пути. Люди вокруг готовы помочь, нужно только попросить.
+          Ты сам задаёшь радиус — кто увидит твою просьбу. Рядом или далеко, в любом городе и стране.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
           {features.map((f) => (
