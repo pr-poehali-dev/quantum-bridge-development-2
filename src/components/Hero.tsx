@@ -36,7 +36,8 @@ export default function Hero({ onWaitlist }: HeroProps) {
           alt="Соседи помогают друг другу"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
       </motion.div>
 
       <div className="relative z-10 text-center text-white">
