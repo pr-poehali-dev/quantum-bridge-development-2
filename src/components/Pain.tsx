@@ -1,5 +1,5 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const moments = [
   {
@@ -19,6 +19,22 @@ const moments = [
 export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [count, setCount] = useState<number | null>(null);
+
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  });
+  const opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, [0.1, 0.5], [40, 0]);
+
+  useEffect(() => {
+    fetch("https://functions.poehali.dev/2d6e5979-4b1e-41d4-95be-e18cad31630f")
+      .then(r => r.json())
+      .then(data => setCount(data.total || 0))
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,19 +46,15 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      if (res.ok) { setStatus("success"); setEmail(""); }
-      else setStatus("error");
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+        setCount(c => (c !== null ? c + 1 : c));
+      } else setStatus("error");
     } catch {
       setStatus("error");
     }
   };
-  const container = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "end start"],
-  });
-  const opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0.1, 0.5], [40, 0]);
 
   return (
     <div ref={container} className="bg-white px-6 py-24 lg:py-36">
@@ -92,13 +104,29 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
           className="bg-neutral-950 p-8 lg:p-12"
         >
           {status === "success" ? (
-            <div className="text-center py-4">
+            <div className="py-4">
               <p className="text-white text-2xl font-bold mb-2">Вы в списке!</p>
               <p className="text-neutral-400">Напишем, как только приложение выйдет.</p>
+              {count !== null && (
+                <p className="text-neutral-500 text-sm mt-4">
+                  Вместе с вами ждут запуска <span className="text-white font-bold">{count}</span> {declension(count)}
+                </p>
+              )}
             </div>
           ) : (
             <>
-              <p className="text-neutral-400 uppercase text-xs tracking-widest mb-3">Скоро в App Store</p>
+              <div className="flex items-center justify-between flex-wrap gap-4 mb-3">
+                <p className="text-neutral-400 uppercase text-xs tracking-widest">Скоро в магазинах</p>
+                {count !== null && count > 0 && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-neutral-400 text-xs"
+                  >
+                    Уже ждут: <span className="text-white font-bold text-sm">{count}</span> {declension(count)}
+                  </motion.p>
+                )}
+              </div>
               <p className="text-white text-2xl lg:text-3xl font-bold leading-tight mb-8 max-w-lg">
                 Хочу быть первым, кто поможет — и первым, кому помогут.
               </p>
@@ -128,4 +156,12 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
       </div>
     </div>
   );
+}
+
+function declension(n: number) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return "человек";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "человека";
+  return "человек";
 }
