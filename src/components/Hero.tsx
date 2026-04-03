@@ -1,5 +1,5 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import StoreButtons from "@/components/StoreButtons";
 
 interface HeroProps {
@@ -8,6 +8,14 @@ interface HeroProps {
 
 export default function Hero({ onWaitlist }: HeroProps) {
   const container = useRef<HTMLDivElement>(null);
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("https://functions.poehali.dev/2d6e5979-4b1e-41d4-95be-e18cad31630f")
+      .then(r => r.json())
+      .then(data => setCount(data.total || 0))
+      .catch(() => {});
+  }, []);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"],
@@ -41,6 +49,16 @@ export default function Hero({ onWaitlist }: HeroProps) {
         <div className="mt-8 flex flex-col items-center gap-3">
           <p className="text-white/50 text-xs uppercase tracking-widest">Скоро в магазинах</p>
           <StoreButtons onWaitlist={onWaitlist} dark />
+          {count !== null && count > 0 && (
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-white/60 text-xs mt-1"
+            >
+              Уже ждут запуска <span className="text-white font-bold">{count}</span> человек
+            </motion.p>
+          )}
         </div>
       </div>
     </div>
