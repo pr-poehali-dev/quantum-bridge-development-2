@@ -4,12 +4,12 @@ import { useRef, useState, useEffect } from "react";
 const moments = [
   {
     img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/e1285c68-e546-4357-9d92-09127c949972.jpg",
-    text: "Стало плохо на улице — держится за сердце...",
+    text: "Человеку стало плохо на улице...",
     sub: "Рядом люди, но все проходят мимо.",
   },
   {
     img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/02b646f0-2635-4528-a76a-485c154228ec.jpg",
-    text: "Сломалась машина на дороге — канистра, трос...",
+    text: "Сломалась машина на дороге...",
     sub: "Машины едут мимо, никто не останавливается.",
   },
   {
