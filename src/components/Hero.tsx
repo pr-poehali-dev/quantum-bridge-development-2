@@ -32,7 +32,7 @@ export default function Hero({ onWaitlist }: HeroProps) {
         className="absolute inset-0 w-full h-full"
       >
         <img
-          src="https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/11875cb0-598a-4e3e-97d1-7c697d5a7582.jpg"
+          src="https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/b9e00066-7283-4288-81c1-94037838d244.jpg"
           alt="Соседи помогают друг другу"
           className="w-full h-full object-cover"
         />

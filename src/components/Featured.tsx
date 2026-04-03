@@ -33,7 +33,7 @@ export default function Featured({ onWaitlist }: FeaturedProps) {
     <div id="about" className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0 bg-white">
       <div className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2">
         <img
-          src="https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/11875cb0-598a-4e3e-97d1-7c697d5a7582.jpg"
+          src="https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/b9e00066-7283-4288-81c1-94037838d244.jpg"
           alt="Соседи помогают друг другу"
           className="w-full h-full object-cover"
         />
