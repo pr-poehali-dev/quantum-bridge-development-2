@@ -64,9 +64,17 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
       <div className="max-w-5xl mx-auto">
         <motion.div style={{ opacity, y }}>
           <p className="uppercase text-neutral-400 text-sm tracking-widest mb-6">Знакомо?</p>
-          <h2 className="text-3xl lg:text-6xl font-bold text-neutral-900 leading-tight mb-12 max-w-3xl">
+          <h2 className="text-3xl lg:text-6xl font-bold text-neutral-900 leading-tight mb-8 max-w-3xl">
             Мы видим, что человеку нужна помощь. И проходим мимо.
           </h2>
+          <div className="flex flex-col sm:flex-row gap-6 mb-12 max-w-3xl">
+            <p className="flex-1 text-lg lg:text-xl text-neutral-500 leading-relaxed border-l-2 border-neutral-200 pl-5">
+              Вы когда-нибудь <span className="text-neutral-900 font-semibold">сожалели, что не помогли</span> человеку и прошли мимо?
+            </p>
+            <p className="flex-1 text-lg lg:text-xl text-neutral-500 leading-relaxed border-l-2 border-neutral-200 pl-5">
+              Вы когда-нибудь <span className="text-neutral-900 font-semibold">стеснялись предложить помощь</span> — вдруг откажут или обидятся?
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-neutral-200">
