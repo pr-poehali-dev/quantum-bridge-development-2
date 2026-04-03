@@ -3,15 +3,18 @@ import { useRef, useState, useEffect } from "react";
 
 const moments = [
   {
-    text: "Стало плохо на улице — не могу дойти до дома...",
-    sub: "Рядом люди, но как попросить незнакомца о помощи?",
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/e1285c68-e546-4357-9d92-09127c949972.jpg",
+    text: "Стало плохо на улице — держится за сердце...",
+    sub: "Рядом люди, но все проходят мимо.",
   },
   {
-    text: "Принимаю важное решение и не знаю, как поступить...",
-    sub: "Нужен живой человек, который выслушает и поймёт.",
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/02b646f0-2635-4528-a76a-485c154228ec.jpg",
+    text: "Сломалась машина на дороге — канистра, трос...",
+    sub: "Машины едут мимо, никто не останавливается.",
   },
   {
-    text: "Чувствую себя одиноко и просто хочу поговорить...",
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/f2d5a49d-217a-4f68-8e82-f470c5fbbdfd.jpg",
+    text: "Одиноко и тяжело на душе, хочется поговорить...",
     sub: "Иногда достаточно одного слова от чужого человека.",
   },
 ];
@@ -74,11 +77,15 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="bg-white p-8 lg:p-10"
+              className="bg-white flex flex-col"
             >
-              <p className="text-4xl mb-6 text-neutral-300 font-bold leading-none">0{i + 1}</p>
-              <p className="text-neutral-700 text-lg leading-relaxed">{moment.text}</p>
-              <p className="mt-4 text-neutral-400 text-sm italic">{moment.sub}</p>
+              <div className="h-56 overflow-hidden">
+                <img src={moment.img} alt={moment.text} className="w-full h-full object-cover grayscale" />
+              </div>
+              <div className="p-6 lg:p-8">
+                <p className="text-neutral-700 text-base leading-relaxed font-medium mb-2">{moment.text}</p>
+                <p className="text-neutral-400 text-sm italic">{moment.sub}</p>
+              </div>
             </motion.div>
           ))}
         </div>
