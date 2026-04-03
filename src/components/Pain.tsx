@@ -27,6 +27,31 @@ const moments = [
     text: "Нужен перфоратор на пару часов...",
     sub: "Покупать ради одного раза — жалко. Сосед есть, но неловко просить.",
   },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/1c3e213f-0cd2-41c9-aa80-19c3d68f964b.jpg",
+    text: "Бабушка тащит тяжёлые сумки с продуктами...",
+    sub: "Хочется помочь, но вдруг она откажется или обидится?",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/6c4aae88-2ca7-4989-b3b3-ad052029192f.jpg",
+    text: "Села батарея — машина не заводится...",
+    sub: "Провода для прикурки есть, а попросить незнакомца — неловко.",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/c057c5f6-b3c2-456d-93f4-79a7d2b07cba.jpg",
+    text: "Не разобраться с компьютером самому...",
+    sub: "Рядом молодые соседи, но не знаешь, к кому обратиться.",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/e643afde-4bef-47d0-bfe9-6575bd6ef15a.jpg",
+    text: "Срочно уехал, а собаку выгулять некому...",
+    sub: "Сосед наверняка бы помог, но как его найти быстро?",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/5e70b9db-0044-4e30-8346-def697d7f937.jpg",
+    text: "Потекла труба, а что делать — непонятно...",
+    sub: "Рядом может быть сантехник или просто умелый сосед.",
+  },
 ];
 
 export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
@@ -87,7 +112,7 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-neutral-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200">
           {moments.map((moment, i) => (
             <motion.div
               key={i}
