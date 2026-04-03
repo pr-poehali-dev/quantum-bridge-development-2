@@ -145,14 +145,13 @@ export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="bg-white flex flex-col"
+              className="relative overflow-hidden h-72 group"
             >
-              <div className="h-56 overflow-hidden">
-                <img src={moment.img} alt={moment.text} className="w-full h-full object-cover grayscale" />
-              </div>
-              <div className="p-6 lg:p-8">
-                <p className="text-neutral-700 text-base leading-relaxed font-medium mb-2">{moment.text}</p>
-                <p className="text-neutral-400 text-sm italic">{moment.sub}</p>
+              <img src={moment.img} alt={moment.text} className="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <p className="text-white text-base leading-snug font-semibold mb-1">{moment.text}</p>
+                <p className="text-white/60 text-sm italic">{moment.sub}</p>
               </div>
             </motion.div>
           ))}
