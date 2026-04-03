@@ -52,6 +52,31 @@ const moments = [
     text: "Потекла труба, а что делать — непонятно...",
     sub: "Рядом может быть сантехник или просто умелый сосед.",
   },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/09cc7d87-ba2b-44f4-bb01-f119361fc838.jpg",
+    text: "Переезд, а грузчики подвели...",
+    sub: "Коробок много, лифта нет, а соседи даже не знают что нужна помощь.",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/ecdfaa09-da65-4a6e-8a88-d3454926f748.jpg",
+    text: "Нужно срочно добраться, а такси нет...",
+    sub: "Может, сосед едет в ту же сторону?",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/c441622f-e18c-4a68-acbd-bf6c8beeb33a.jpg",
+    text: "Уезжаю, а цветы засохнут...",
+    sub: "Полить раз в неделю — пустяк для соседа, но как попросить?",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/a33963ba-d8b2-4c5f-b464-e6e131c377bd.jpg",
+    text: "Ребёнка не с кем оставить на пару часов...",
+    sub: "Соседка наверняка бы помогла, но неловко беспокоить.",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/41fa940d-ceb2-47e1-9131-e2e57d0e841c.jpg",
+    text: "Машину замело снегом с ночи...",
+    sub: "Вдвоём откопать — пять минут. Одному — полчаса.",
+  },
 ];
 
 export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
