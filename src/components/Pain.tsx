@@ -17,6 +17,16 @@ const moments = [
     text: "Одиноко и тяжело на душе, хочется поговорить...",
     sub: "Иногда достаточно одного слова от чужого человека.",
   },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/02dde613-555b-4ede-b72f-1732e30b9ed6.jpg",
+    text: "Тяжёлый диван нужно занести на пятый этаж...",
+    sub: "А лифт не работает, и сделать это одному невозможно.",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/082bc052-ea5c-4b18-8bb4-ac6e61294045/files/e6ec9339-4acf-4bac-980b-43770a25ee38.jpg",
+    text: "Нужен перфоратор на пару часов...",
+    sub: "Покупать ради одного раза — жалко. Сосед есть, но неловко просить.",
+  },
 ];
 
 export default function Pain({ onWaitlist }: { onWaitlist: () => void }) {
